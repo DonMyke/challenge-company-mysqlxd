@@ -56,28 +56,28 @@ class DBCompany {
   }
 
   async getCountEmployees(): Promise<number | undefined> {
-    const query = `select count(*) as count from employee`;
+    const query = `select count (*) as count from employee`;
     const rows: { count: number }[] = await this.queryDB(query);
     const count = rows[0].count;
     return count;
   }
 
   async getNumberOfFemaleEmployees(): Promise<number | undefined> {
-    const query = ``;
+    const query = `select count(*) as count from employee where gender="Female"`;
     const rows: { count: number }[] = await this.queryDB(query);
     const count = rows[0].count;
     return count;
   }
 
   async getNumberOfMaleEmployees(): Promise<number | undefined> {
-    const query = ``;
+    const query = `select count(*) as count from employee where gender="Male"`;
     const rows: { count: number }[] = await this.queryDB(query);
     const count = rows[0].count;
     return count;
   }
 
   async getFirstNames(): Promise<string[] | undefined> {
-    const query = ``;
+    const query = `select first_name from employee`;
     const rows: { first_name: string }[] = await this.queryDB(query);
     const names = rows.map((row) => row.first_name);
     return names;
@@ -90,13 +90,13 @@ class DBCompany {
     minSalary?: number;
     maxSalary?: number;
   }): Promise<Employee[] | undefined> {
-    const query = ``;
+    const query = `select * from employee where salary<=${maxSalary} and salary>=${minSalary}`;
     const rows: Employee[] = await this.queryDB(query);
     return rows;
   }
 
   async getEmployeeByName(name: string): Promise<Employee[] | undefined> {
-    const query = ``;
+    const query = `select first_name from employee where first_name="Kate"`;
     const rows: Employee[] = await this.queryDB(query);
     return rows;
   }
